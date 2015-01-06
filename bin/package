@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-language='play2'
+language='play'
 
 dependencies=(
   'http://lang-jvm.s3.amazonaws.com/jvm-buildpack-common-v10.tar.gz'
