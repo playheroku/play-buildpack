@@ -1,9 +1,9 @@
-Heroku buildpack: Play!
-=========================
+Buildpack: Play!
+================
 
-This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpack) for [Play! framework](http://www.playframework.org/) apps.
+This is a [buildpack](http://doc.scalingo.com/buildpacks) for [Play! framework](http://www.playframework.org/) apps.
 
-*Note: This buildpack only applies to Play 1.2.x apps. Play 2.x apps are handled by the [Scala buildpack](https://github.com/heroku/heroku-buildpack-scala)*
+*Note: This buildpack only applies to Play 1.2.x apps. Play 2.x apps are handled by the [Scala buildpack](https://github.com/Scalingo/scala-buildpack)*
 
 Usage
 -----
@@ -13,11 +13,10 @@ Example usage:
     $ ls
     app	conf	lib	public	test
 
-    $ heroku create --stack cedar --buildpack http://github.com/heroku/heroku-buildpack-play.git
+    $ scalingo create play-app
 
-    $ git push heroku master
+    $ git push scalingo master
     ...
-    -----> Heroku receiving push
     -----> Fetching custom build pack... done
     -----> Play! app detected
     -----> Installing Play!..... done
@@ -66,9 +65,9 @@ For example one of the things that the build pack does is download and install t
 
 This will alter the behaviour to pull down and install your chosen version of Play! rather than the default.
 
-Commit and push the changes to your buildpack to your Github fork, then push your sample app to Heroku to test. Once the push succeeds you should be able to run:
+Commit and push the changes to your buildpack to your Github fork, then push your sample app to Scalingo to test. Once the push succeeds you should be able to run:
 
-    $ heroku run bash
+    $ scalingo -a play-app run bash
 
 and then:
 
