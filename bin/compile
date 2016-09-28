@@ -11,13 +11,13 @@ BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
 # source in common functions
 . $BIN_DIR/common.sh
 
-JVM_COMMON_BUILDPACK=http://lang-jvm.s3.amazonaws.com/jvm-buildpack-common-v10.tar.gz
+export_env_dir $ENV_DIR
+
+JVM_COMMON_BUILDPACK=${JVM_COMMON_BUILDPACK:-"https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/jvm-common.tgz"}
 mkdir -p /tmp/jvm-common
-curl --silent --location $JVM_COMMON_BUILDPACK | tar xzm -C /tmp/jvm-common
+curl --silent --location $JVM_COMMON_BUILDPACK | tar xzm -C /tmp/jvm-common --strip-components=1
 . /tmp/jvm-common/bin/util
 . /tmp/jvm-common/bin/java
-
-export_env_dir $ENV_DIR
 
 #create the cache dir if it doesn't exist
 mkdir -p $CACHE_DIR
@@ -57,7 +57,7 @@ if [ -d ${IVY_PATH}-overlay ]; then
 fi
 
 PLAY_VERSION=$(get_play_version conf/dependencies.yml)
-DEFAULT_PLAY_VERSION="1.2.7"
+DEFAULT_PLAY_VERSION="1.3.1"
 VERSION_DECLARED=true
 
 if [ -z "$PLAY_VERSION" ] ; then
@@ -111,6 +111,7 @@ echo 'export PATH="/app/.play:/app/.jdk/bin:/app/.tools:$PATH"' >> $PROFILE_PATH
 # (Note: runtime modules are copied to slug with --forceCopy option)
 rm -fr $PLAY_PATH/modules
 rm -fr $IVY_PATH
+remove_play $BUILD_DIR $PLAY_VERSION
 
 # Warn if no Procfile is present
 if [ ! -f Procfile ]; then
