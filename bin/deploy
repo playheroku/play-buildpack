@@ -3,13 +3,10 @@
 language='play'
 
 dependencies=(
-  'http://lang-jvm.s3.amazonaws.com/jvm-buildpack-common-v10.tar.gz'
-  'http://lang-jvm.s3.amazonaws.com/jdk/cedar-14/openjdk1.9-latest.tar.gz'
-  'http://lang-jvm.s3.amazonaws.com/jdk/openjdk1.8.0_20-slim-cedar14-v2.tar.gz'
-  'http://lang-jvm.s3.amazonaws.com/jdk/openjdk1.7.0_55-cedar14-v2.tar.gz'
-  'http://lang-jvm.s3.amazonaws.com/jdk/openjdk1.6.0_27.tar.gz'
+  'https://s3.amazonaws.com/heroku-jvm-langpack-play/play-heroku-1.3.1.tar.gz'
   'https://s3.amazonaws.com/heroku-jvm-langpack-play/play-heroku-1.2.7.tar.gz'
-  'https://s3.amazonaws.com/heroku-jvm-langpack-play/play-heroku-1.2.6.tar.gz'
+  'https://downloads.typesafe.com/play/1.3.4/play-1.3.4.zip'
+  'https://downloads.typesafe.com/play/1.4.3/play-1.4.3.zip'
 )
 
 excluded_files=(
