@@ -8,13 +8,13 @@ ENV_DIR=$3
 
 BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
 
-# Use heroku stack as it uses heroku JDK repository
-export STACK=cedar-14
-
 # source in common functions
 . $BIN_DIR/common.sh
 
 export_env_dir $ENV_DIR
+
+# Use heroku stack as it uses heroku JDK repository
+export STACK=cedar-14
 
 JVM_COMMON_BUILDPACK=${JVM_COMMON_BUILDPACK:-"https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/jvm-common.tgz"}
 mkdir -p /tmp/jvm-common
