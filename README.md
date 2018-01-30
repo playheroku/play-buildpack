@@ -3,7 +3,7 @@ Buildpack: Play!
 
 This is a [buildpack](http://doc.scalingo.com/buildpacks) for [Play! framework](http://www.playframework.org/) apps.
 
-*Note: This buildpack only applies to Play 1.2.x and 1.3.x apps. Play 2.x apps are handled by the [Scala buildpack](https://github.com/Scalingo/scala-buildpack)*
+*Note: This buildpack only applies to Play 1.2.x, 1.3.x and 1.4.x apps. Play 2.x apps are handled by the [Scala buildpack](https://github.com/Scalingo/scala-buildpack)*
 
 Usage
 -----
@@ -28,9 +28,9 @@ Example usage:
            ~ |  __/|_|\____|\__ (_)
            ~ |_|            |__/
            ~
-           ~ play! 1.3.1, http://www.playframework.org
+           ~ play! 1.4.4, http://www.playframework.org
            ~
-           1.3.1
+           1.4.4
            Building Play! application at directory ./
     ...
 
@@ -42,6 +42,7 @@ Play Versions
 The buildpack will read the Play! version that your application expects from your dependencies.yml file. The version comes on the same line where you already declare a dependency on the Play! framework itself:
 
     - play 1.2.7
+    - play 1.4.4
 
 If you don't specify a version it will be defaulted for you and you'll see a warning message in your build output. It is a best practice to specify the version off the framework that you intend to use.
 
