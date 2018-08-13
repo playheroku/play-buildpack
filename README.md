@@ -5,7 +5,7 @@ This is a [buildpack](https://doc.scalingo.com/buildpacks) for [Play! framework]
 
 *Note: This buildpack only applies to Play 1.2.x, 1.3.x and 1.4.x apps. Play 2.x apps are handled by the [Scala buildpack](https://github.com/Scalingo/scala-buildpack)*
 
-# [Play 1.x support is deprecated](https://kb.heroku.com/play-1-x-is-deprecated-with-support-ending-june-1-2017) and ending on June 1, 2017. Please see the getting started documentation for [Play 2.x](https://devcenter.heroku.com/articles/getting-started-with-scala#introduction).
+# Play 1.x support is deprecated and has ended
 
 Usage
 -----
