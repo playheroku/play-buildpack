@@ -106,7 +106,8 @@ for DIR in $PLAY_PATH $IVY_PATH ; do
   cp -r $DIR $CACHE_DIR/$DIR
 done
 
-PROFILE_PATH="$BUILD_DIR/.profile.d/play.sh"
+# Prefix file to be executed before JVM_COMMON
+PROFILE_PATH="$BUILD_DIR/.profile.d/10-play.sh"
 mkdir -p $(dirname $PROFILE_PATH)
 
 cat <<EOF > $PROFILE_PATH
@@ -125,14 +126,13 @@ function java_xmx_from_size() {
 }
 
 function java_opts_from_size() {
-  JAVA_XMX=\${JAVA_XMX:-java_xmx_from_size()}
+  [ -z "\$JAVA_XMX" ] && JAVA_XMX=\$(java_xmx_from_size)
   echo "-Xmx\${JAVA_XMX}m -Xss512k -XX:+UseCompressedOops"
 }
 
-JAVA_OPTS=\${JAVA_OPTS:-java_opts_from_size()}
+[ -z "\$JAVA_OPTS" ] && export JAVA_OPTS=\$(java_opts_from_size)
 
 export PATH="/app/.play:/app/.jdk/bin:/app/.tools:\$PATH"
-export JAVA_OPTS="\$JAVA_OPTS"
 EOF
 
 # Remove build time dependencies from slug
