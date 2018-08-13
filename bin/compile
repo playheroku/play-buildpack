@@ -106,10 +106,34 @@ for DIR in $PLAY_PATH $IVY_PATH ; do
   cp -r $DIR $CACHE_DIR/$DIR
 done
 
-PROFILE_PATH="$BUILD_DIR/.profile.d/play.sh"
+# Prefix file to be executed before JVM_COMMON
+PROFILE_PATH="$BUILD_DIR/.profile.d/10-play.sh"
 mkdir -p $(dirname $PROFILE_PATH)
-echo 'export PATH="/app/.play:/app/.jdk/bin:/app/.tools:$PATH"' >> $PROFILE_PATH
-echo 'export JAVA_OPTS="-XX:+UseCompressedOops"' >> $PROFILE_PATH
+
+cat <<EOF > $PROFILE_PATH
+function java_xmx_from_size() {
+  case \$CONTAINER_SIZE in
+    XS) echo 96;;
+    S) echo 192;;
+    M) echo 384;;
+    L) echo 768;;
+    XL) echo 1536;;
+    2XL) echo 3072;;
+    3XL) echo 6144;;
+    4XL) echo 12288;;
+    *) echo 384;;
+  esac
+}
+
+function java_opts_from_size() {
+  [ -z "\$JAVA_XMX" ] && JAVA_XMX=\$(java_xmx_from_size)
+  echo "-Xmx\${JAVA_XMX}m -Xss512k -XX:+UseCompressedOops"
+}
+
+[ -z "\$JAVA_OPTS" ] && export JAVA_OPTS=\$(java_opts_from_size)
+
+export PATH="/app/.play:/app/.jdk/bin:/app/.tools:\$PATH"
+EOF
 
 # Remove build time dependencies from slug
 # (Note: runtime modules are copied to slug with --forceCopy option)
