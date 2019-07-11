@@ -13,7 +13,7 @@ BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
 
 export_env_dir $ENV_DIR
 
-JVM_COMMON_BUILDPACK=${JVM_COMMON_BUILDPACK:-"https://buildpacks-repository.s3.amazonaws.com/jvm-common.tar.xz"}
+JVM_COMMON_BUILDPACK=${JVM_COMMON_BUILDPACK:-"https://buildpacks-repository.s3.eu-central-1.amazonaws.com/jvm-common.tar.xz"}
 mkdir -p /tmp/jvm-common
 curl --silent --location $JVM_COMMON_BUILDPACK | tar --extract --xz --touch -C /tmp/jvm-common --strip-components=1
 . /tmp/jvm-common/bin/util
