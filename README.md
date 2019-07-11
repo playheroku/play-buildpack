@@ -60,7 +60,7 @@ In this way, you can add files such as `.ivy2-overlay/ivysettings.xml` to custom
 Hacking
 -------
 
-To use this buildpack, fork it on Github.  Push up changes to your fork, then create a test app with `--buildpack <your-github-url>` and push to it.
+To use this buildpack, fork it on GitHub.  Push up changes to your fork, then create a test app with `--buildpack <your-github-url>` and push to it.
 
 For example one of the things that the build pack does is download and install the Play! framework that will be used to run your app. If you want to use a version of the framework other than those that are supported place a tar.gz of the framework in a public location and then alter the line that sets this variable in the compile script to point there:
 

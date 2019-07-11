@@ -13,12 +13,9 @@ BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
 
 export_env_dir $ENV_DIR
 
-# Use heroku stack as it uses heroku JDK repository
-export STACK=cedar-14
-
-JVM_COMMON_BUILDPACK=${JVM_COMMON_BUILDPACK:-"https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/jvm-common.tgz"}
+JVM_COMMON_BUILDPACK=${JVM_COMMON_BUILDPACK:-"https://buildpacks-repository.s3.eu-central-1.amazonaws.com/jvm-common.tar.xz"}
 mkdir -p /tmp/jvm-common
-curl --silent --location $JVM_COMMON_BUILDPACK | tar xzm -C /tmp/jvm-common --strip-components=1
+curl --silent --location $JVM_COMMON_BUILDPACK | tar --extract --xz --touch -C /tmp/jvm-common --strip-components=1
 . /tmp/jvm-common/bin/util
 . /tmp/jvm-common/bin/java
 
